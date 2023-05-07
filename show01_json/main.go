@@ -17,6 +17,7 @@ func main(){
 	encodeSlideOfStructs()
 	encodingJsonWithIndent()
 	decodeIntoSlice()
+	encodeStructWithOmitEmpty()
 }
 
 func encodeJson(){
@@ -101,4 +102,22 @@ func decodeIntoSlice(){
 	for _, person := range people {
 		fmt.Printf("Name: %s\nAge: %d\n", person.Name, person.Age)
 	}
+}
+
+func encodeStructWithOmitEmpty(){
+	type Person struct {
+		Name string `json:"name"`
+		Age int 	`json: "age,omitempty`
+	}
+
+	person := Person{Name: "John"}
+
+	jsonData, err := json.Marshal(person)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("\nEncode struct with omitempty: ")
+	fmt.Println(string(jsonData))
 }
