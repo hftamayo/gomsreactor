@@ -36,4 +36,6 @@ func decodeJson(){
 		fmt.Println(err)
 		return
 	}
+	fmt.Println("Decode JSON:")
+	fmt.Println(person)
 }
