@@ -22,6 +22,6 @@ func encodeJson(){
 		fmt.Println(err)
 		return
 	}
-
+	fmt.Println("Encode JSON:")
 	fmt.Println(string(jsonData))
 }
