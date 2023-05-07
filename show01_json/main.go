@@ -14,6 +14,8 @@ func main(){
 	encodeJson()
 	decodeJson()
 	decodeIntoMap()
+	encodeSlideOfStructs()
+	encodingJsonWithIndent()
 }
 
 func encodeJson(){
@@ -42,7 +44,7 @@ func decodeJson(){
 }
 
 func decodeIntoMap(){
-	jsonData := []byte(`{"name": "John", "age": 32}`)
+	jsonData := []byte(`{"name": "Liam", "age": 55}`)
 
 	var data map[string]interface{}
 	err := json.Unmarshal(jsonData, &data)
@@ -53,4 +55,33 @@ func decodeIntoMap(){
 
 	fmt.Println("\nDecode JSON into map:")
 	fmt.Println(data)
+}
+
+func encodeSlideOfStructs(){
+	person1 := Person{Name: "John", Age: 32}
+	person2 := Person{Name: "Liam", Age: 55}
+	people := []Person{person1, person2}
+
+	jsonData, err := json.Marshal(people)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("\nEncode slice of structs:")
+	fmt.Println(string(jsonData))
+}
+
+func encodingJsonWithIndent(){
+	person := Person{Name: "John", Age: 32}
+
+	jsonData, err := json.MarshalIndent(person, "", " ")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("\nEncoding JSON with indent: ")
+	fmt.Println(string(jsonData))
+
 }
