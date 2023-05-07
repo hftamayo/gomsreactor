@@ -13,6 +13,7 @@ type Person struct {
 func main(){
 	encodeJson()
 	decodeJson()
+	decodeIntoMap()
 }
 
 func encodeJson(){
@@ -36,6 +37,20 @@ func decodeJson(){
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("Decode JSON:")
+	fmt.Println("\nDecode JSON:")
 	fmt.Println(person)
+}
+
+func decodeIntoMap(){
+	jsonData := []byte(`{"name": "John", "age": 32}`)
+
+	var data map[string]interface{}
+	err := json.Unmarshal(jsonData, &data)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("\nDecode JSON into map:")
+	fmt.Println(data)
 }
