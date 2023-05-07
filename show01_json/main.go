@@ -12,6 +12,7 @@ type Person struct {
 
 func main(){
 	encodeJson()
+	decodeJson()
 }
 
 func encodeJson(){
@@ -24,4 +25,15 @@ func encodeJson(){
 	}
 	fmt.Println("Encode JSON:")
 	fmt.Println(string(jsonData))
+}
+
+func decodeJson(){
+	jsonData := []byte(`{"name": "John", "age": 32}`)
+
+	var person Person
+	err := json.Unmarshal(jsonData, &person)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
